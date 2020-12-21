@@ -28,24 +28,20 @@ export async function getStaticPaths({}: Params) {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({
+export const getStaticProps: GetStaticProps<ProductProps> = async ({
   params,
 }) => {
-  console.log("GET STATIC PROPS")
   if (!params || !params.id || typeof params.id !== "string") {
     return {
       notFound: true,
     };
   }
   const product = await getProduct(params.id);
-  return { props: product };
+  return { props: { product } };
 };
 
 export default function ProductPage({ product }: ProductProps) {
   const router = useRouter();
-  console.log("1");
-  console.log(product);
-  console.log("hi");
   if (!router.isFallback && !product?.id) {
     return <ErrorPage statusCode={404} />;
   }
