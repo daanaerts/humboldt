@@ -18,7 +18,7 @@ export default function Home({ products }: Props) {
       <Container maxWidth="md">
         <Box my={4}>
           <Typography variant="h4" gutterBottom>
-            Next.dsjs example
+            Products
           </Typography>
         </Box>
 
@@ -30,7 +30,7 @@ export default function Home({ products }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getProducts();
-  console.log("SDFS")
+  console.log("data",data)
   return {
     props: {
       products: data,

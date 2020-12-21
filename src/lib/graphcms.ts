@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
   id: string;
   title: string;
   price: number;
@@ -40,4 +40,17 @@ export async function getProducts(): Promise<Product[]> {
         }
     `);
   return data.products;
+}
+
+export async function getProduct(id: string): Promise<Product> {
+  const data = await fetchAPI(`
+        {
+            product(where: {id: "${id}"}) {
+                id
+                title
+                price
+            }
+        }
+    `);
+  return data.product;
 }

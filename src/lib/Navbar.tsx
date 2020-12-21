@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MainSearch from "./MainSearch";
 import Box from "@material-ui/core/Box";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,9 @@ export default function ButtonAppBar() {
               <MainSearch />
             </Box>
           </Box>
-          <Button color="inherit">Login</Button>
+          <Link href="/login">
+            <Button color="inherit">Login</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Box
