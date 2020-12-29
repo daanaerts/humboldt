@@ -2,6 +2,7 @@ export interface Product {
   id: string;
   title: string;
   price: number;
+  thumbnail: { url: string };
 }
 
 async function fetchAPI(query: string) {
@@ -36,6 +37,9 @@ export async function getProducts(): Promise<Product[]> {
                 id
                 title
                 price
+                thumbnail {
+                  url
+                }
             }
         }
     `);
@@ -49,6 +53,9 @@ export async function getProduct(id: string): Promise<Product> {
                 id
                 title
                 price
+                thumbnail {
+                  url
+                }
             }
         }
     `);

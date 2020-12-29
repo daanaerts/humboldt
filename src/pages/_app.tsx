@@ -4,6 +4,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Head from "next/head";
 import theme from "../lib/theme";
+import GlobalState from "../context/GlobalState";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -23,10 +24,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <GlobalState>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </GlobalState>
     </React.Fragment>
   );
 }

@@ -5,14 +5,22 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import MainSearch from "./MainSearch";
 import Box from "@material-ui/core/Box";
 import Link from "next/link";
+import ShoppingCart from "./ShoppingCart";
+import Image from "next/image";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  appBar: {
+    background: "transparent",
+    color: theme.palette.text.primary,
+  },
+  logo: {
+    padding: 5,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -40,19 +48,15 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
+          <Image
+            src="/images/v0_black.png"
+            alt="Logo"
+            height={50}
+            width={50 * 1.62}
+            className={classes.logo}
+          />
           <Box className={classes.searchWrapper}>
             <Box
               className={classes.searchWrapperInner}
@@ -61,6 +65,7 @@ export default function ButtonAppBar() {
               <MainSearch />
             </Box>
           </Box>
+          <ShoppingCart />
           <Link href="/login">
             <Button color="inherit">Login</Button>
           </Link>

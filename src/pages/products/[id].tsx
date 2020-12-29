@@ -1,10 +1,12 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import NavBar from "../../lib/Navbar";
-import { Product, getProducts, getProduct } from "../../lib/graphcms";
+import { GetStaticProps } from "next";
+import { Box, Button, Container } from "@material-ui/core";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import Image from "next/image";
+import { Product, getProducts, getProduct } from "../../lib/graphcms";
+import NavBar from "../../lib/Navbar";
+import AddToCartButton from "../../lib/AddToCartButton";
 
 interface ProductProps {
   product: Product;
@@ -37,6 +39,7 @@ export const getStaticProps: GetStaticProps<ProductProps> = async ({
     };
   }
   const product = await getProduct(params.id);
+  console.log("Built product page", product.title);
   return { props: { product } };
 };
 
@@ -49,10 +52,19 @@ export default function ProductPage({ product }: ProductProps) {
   return (
     <React.Fragment>
       <NavBar />
-      <Box>
-        <h1>product</h1>
-        <h4>{product.title}</h4>
-      </Box>
+      <Container maxWidth="md">
+        <Box my={4}>
+          <h1>product</h1>
+          <h4>{product.title}</h4>
+          <Image
+            src={product.thumbnail.url}
+            alt={product.title}
+            width={300}
+            height={300}
+          />
+          <AddToCartButton product={product} />
+        </Box>
+      </Container>
     </React.Fragment>
   );
 }
